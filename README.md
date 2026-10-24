@@ -2,7 +2,7 @@
 
 Sistema acadêmico em Python para organizar a fila de atendimento de uma clínica médica por especialidade e prioridade. O projeto está sendo desenvolvido passo a passo pelos integrantes do grupo, com foco em modularização e no uso de estruturas de dados.
 
-> **Estado atual:** os modelos e o cadastro de especialistas estão implementados. O módulo de filas está em desenvolvimento; a interface gráfica, a persistência e o relatório ainda serão integrados.
+> **Estado atual:** os modelos, o cadastro de especialistas (com a autenticação do administrador) e as filas por especialidade estão implementados. O painel, a persistência, o relatório, a interface gráfica e a integração pelo `main.py` ainda serão desenvolvidos.
 
 ## Objetivos
 
@@ -40,14 +40,32 @@ As bibliotecas citadas fazem parte da biblioteca padrão do Python; não há dep
 
 ## Organização dos módulos
 
-| Arquivo | Responsabilidade | Estado |
+O código fica no pacote `clinica/`, com uma pasta por módulo do enunciado. Cada pasta tem um `__init__.py` que indica o que os outros módulos podem usar, então quem importa não precisa saber em qual arquivo cada classe está. O `main.py` fica na raiz.
+
+```
+Clinica-SistemaSenhaPrioridade/
+├── main.py
+├── clinica/
+│   ├── modelos/          enums.py, entidades.py
+│   ├── especialistas/    cadastro.py, administrador.py
+│   ├── filas/            fila_especialidade.py, gerenciador.py
+│   ├── painel/           painel.py
+│   ├── relatorio/        relatorio.py
+│   └── interface/        interface gráfica (etapa posterior)
+└── testes/
+```
+
+| Pasta | Responsabilidade | Estado |
 | --- | --- | --- |
-| `modelos.py` | Especialidades, prioridades, estados, senhas e especialistas | Implementado |
-| `especialistas.py` | Cadastro de especialistas e autenticação do administrador | Implementado |
-| `filas.py` | Emissão, ordenação e chamada de senhas por especialidade | Em desenvolvimento |
-| `painel.py` | Preparação das informações para exibição | Planejado |
-| `relatorio.py` | Persistência em SQLite e geração do relatório diário | Planejado |
+| `clinica/modelos/` | Especialidades, prioridades, estados, senhas e especialistas | Implementado |
+| `clinica/especialistas/` | Cadastro de especialistas e autenticação do administrador | Implementado |
+| `clinica/filas/` | Emissão, ordenação e chamada de senhas, encerramento diário e estimativa de espera | Implementado; a prioridade estrita depende da professora |
+| `clinica/painel/` | Preparação das informações para exibição | Planejado |
+| `clinica/relatorio/` | Persistência em SQLite e geração do relatório diário | Planejado |
+| `clinica/interface/` | Interface gráfica em Tkinter | Planejado, etapa posterior |
 | `main.py` | Integração do fluxo da aplicação | Planejado |
+
+Os módulos são importados a partir da raiz do projeto, por exemplo `from clinica.filas import GerenciadorFilas`. Os comandos devem ser executados na pasta raiz.
 
 ## Regras do projeto
 

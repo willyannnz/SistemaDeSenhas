@@ -1,9 +1,6 @@
-"""Modelos do sistema de senhas da clínica: especialidades, prioridades, senhas e especialistas."""
+"""Enums do sistema: especialidades, prioridades e status das senhas."""
 
-from dataclasses import dataclass, field
-from datetime import datetime
 from enum import Enum
-from typing import Optional
 
 
 class Especialidade(Enum):
@@ -35,24 +32,3 @@ class StatusSenha(Enum):
     EM_ATENDIMENTO = "Em Atendimento"
     FINALIZADA = "Finalizada"
     NAO_ATENDIDA = "Não Atendida"
-
-
-@dataclass
-class Especialista:
-    """Representa um especialista médico."""
-    nome: str
-    especialidade: Especialidade
-    consultorio: int
-
-
-@dataclass
-class Senha:
-    """Representa uma senha gerada para atendimento."""
-    numero: int
-    especialidade: Especialidade
-    prioridade: Prioridade
-    status: StatusSenha = StatusSenha.AGUARDANDO
-    hora_geracao: datetime = field(default_factory=datetime.now)
-    hora_chamada: Optional[datetime] = None
-    consultorio: Optional[int] = None
-    especialista: Optional[Especialista] = None
