@@ -88,6 +88,3 @@ O fluxo completo da aplicação ainda não está pronto. As instruções de exec
 - Iago de Castro Sarmento
 - Bruna Stéfany
 
-## Documentação do projeto
-
-O Notion contém a versão de referência dos requisitos. O histórico de decisões e etapas fica na nota `Projetos/Sistema-Senhas-Clinica.md` do Obsidian.
