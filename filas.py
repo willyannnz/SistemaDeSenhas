@@ -104,27 +104,27 @@ class GerenciadorFilas:
         return senha
 
     def encerrar_dia(self) -> list[Senha]:
-        """Marca como não atendidas as senhas restantes e reinicia as filas.
+        """Encerra o dia e reinicia as filas.
 
-        Devolve as senhas que ficaram aguardando para que o módulo de relatório
-        possa persistir os estados no banco de dados. O dia só fecha quando não
-        há atendimentos em andamento.
+        Finaliza os atendimentos que ainda estavam abertos (a senha já foi chamada,
+        então conta como atendida) e marca como não atendidas as senhas que ainda
+        aguardavam. Devolve todas elas, as finalizadas primeiro, para que o módulo de
+        relatório registre cada uma de acordo com o status.
         """
         self._verificar_dia_aberto()
-        if self._atendimentos:
-            raise ValueError(
-                "Finalize os atendimentos em andamento antes de encerrar o dia."
-            )
 
-        nao_atendidas = []
+        encerradas = []
+        for consultorio in list(self._atendimentos):  # list(...): o dict muda dentro do for
+            encerradas.append(self.finalizar_atendimento(consultorio))
+
         for fila in self._filas.values():
             for senha in fila.encerrar():
                 senha.status = StatusSenha.NAO_ATENDIDA
-                nao_atendidas.append(senha)
+                encerradas.append(senha)
 
         self._filas.clear()
         self._dia_encerrado = True
-        return nao_atendidas
+        return encerradas
 
     def iniciar_novo_dia(self) -> None:
         """Reabre a emissão após encerrar o dia anterior."""
