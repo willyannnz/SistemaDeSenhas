@@ -15,7 +15,8 @@ class Prioridade(Enum):
     """Prioridades de atendimento.
 
     O código numérico define a ordem de chamada: quanto menor, mais urgente.
-    NORMAL (7) é a senha comum e perde para todas as prioritárias.
+    NORMAL (7) é a senha comum: não entra no heap das prioritárias, fica numa fila FIFO
+    e só é chamada quando não há prioritária aguardando.
     """
     IDOSO_80 = 1
     IDOSO_60 = 2

@@ -26,7 +26,7 @@ As especialidades disponíveis no modelo atual são Clínica Geral, Pediatria, G
 | 6 | Crianças no colo |
 | 7 | Senha normal |
 
-Os códigos 1 a 6 representam as prioridades previstas no projeto. O código 2 e a regra de prioridade estrita ainda precisam ser confirmados com a professora. O código 7 é uma escolha interna de implementação para posicionar senhas normais depois das prioritárias no heap.
+Os códigos 1 a 6 representam as prioridades previstas no projeto. O código 2 e a regra de prioridade estrita ainda precisam ser confirmados com a professora. O código 7 representa a senha normal no enum. As senhas normais não entram no heap: ficam em uma fila FIFO (`deque`) e só são chamadas quando não há senha prioritária aguardando.
 
 ## Tecnologias previstas
 

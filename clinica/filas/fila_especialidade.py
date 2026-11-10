@@ -11,12 +11,14 @@ class FilaEspecialidade:
         self.especialidade = especialidade
 
         # Prioritárias: heap de tuplas (código da prioridade, número, senha).
-        # O heapq devolve sempre a MENOR tupla, comparando campo a campo:
+        # O heapq devolve sempre a MENOR tupla, comparando campo a campo: primeiro o código
+        # da prioridade e, no empate, o número da senha (ordem de chegada).
         self._heap: list[tuple[int, int, Senha]] = []
 
         self._contador = 0
 
-        # Normais: FIFO puro. Não precisa de prioridade nem de desempate,
+        # Normais: FIFO puro. Não precisa de prioridade nem de desempate:
+        # a ordem de chegada já é a ordem de chamada.
         self._normais = deque()
 
     def emitir(self, prioridade: Prioridade) -> Senha:
@@ -32,7 +34,7 @@ class FilaEspecialidade:
         else:
             # Guardamos a tupla, não só a senha, para o heap saber ordenar.
             heapq.heappush(self._heap, (prioridade.value, senha.numero, senha))
-        return senha                         
+        return senha
 
     def proxima(self) -> Senha | None:
         """Tira a próxima senha: prioritárias primeiro, depois as normais; None se vazia."""
@@ -56,12 +58,12 @@ class FilaEspecialidade:
         while self._normais:                 # ...depois as normais, na ordem de chegada
             senhas.append(self._normais.popleft())
         return senhas
-    
+
     def ordem_prevista(self) -> list[Senha]:
         """Senhas aguardando na ordem em que serão chamadas (sem remover nenhuma)."""
         prioritarias = [item[2] for item in sorted(self._heap)]
         return prioritarias + list(self._normais)
-    
+
     def posicao(self, numero: int) -> int | None:
         """Quantas senhas estão à frente da senha com esse número; None se ela não está aguardando."""
         for indice, senha in enumerate(self.ordem_prevista()):
