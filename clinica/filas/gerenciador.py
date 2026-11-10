@@ -69,6 +69,7 @@ class GerenciadorFilas:
             raise ValueError(f"Consultório {consultorio} não tem atendimento em andamento.")
         senha = self._atendimentos.pop(consultorio)
         senha.status = StatusSenha.FINALIZADA
+        senha.hora_finalizacao = datetime.now()
         return senha
 
     def encerrar_dia(self) -> list[Senha]:

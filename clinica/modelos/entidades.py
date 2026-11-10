@@ -24,5 +24,6 @@ class Senha:
     status: StatusSenha = StatusSenha.AGUARDANDO
     hora_geracao: datetime = field(default_factory=datetime.now)
     hora_chamada: Optional[datetime] = None
+    hora_finalizacao: Optional[datetime] = None
     consultorio: Optional[int] = None
     especialista: Optional[Especialista] = None
