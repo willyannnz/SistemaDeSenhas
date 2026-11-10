@@ -9,7 +9,6 @@ class Especialidade(Enum):
     PEDIATRIA = "Pediatria"
     GINECOLOGIA = "Ginecologia"
     CARDIOLOGIA = "Cardiologia"
-    PSIQUIATRIA = "Psiquiatria"
 
 
 class Prioridade(Enum):

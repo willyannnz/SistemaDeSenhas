@@ -14,7 +14,7 @@ Sistema acadêmico em Python para organizar a fila de atendimento de uma clínic
 
 ## Especialidades e prioridades
 
-As especialidades disponíveis no modelo atual são Clínica Geral, Pediatria, Ginecologia, Cardiologia e Psiquiatria.
+As especialidades disponíveis no modelo atual são Clínica Geral, Pediatria, Ginecologia e Cardiologia, conforme o enunciado. Cada especialidade comporta até três especialistas e a clínica tem 12 consultórios (4 × 3 = 12). Como o código percorre o enum `Especialidade`, incluir uma nova especialidade exige alterar o enum e rever o total de consultórios.
 
 | Código | Prioridade |
 | --- | --- |
