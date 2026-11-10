@@ -102,22 +102,30 @@ class GerenciadorFilas:
             raise ValueError("Encerre o dia atual antes de iniciar outro.")
         self._dia_encerrado = False
 
+    def _minutos_para(self, especialidade: Especialidade, pessoas_na_frente: int) -> int:
+        """Minutos até a vez de quem tem essa quantidade de pessoas na frente (RN05).
+
+        Cada consultório ativo libera uma vaga a cada 30 minutos; com n consultórios
+        trabalhando juntos, sai um paciente a cada 30/n minutos, em média.
+        Só pode ser chamada para especialidade com consultório ativo (evita divisão por zero).
+        """
+        consultorios = self._cadastro.consultorios_ativos(especialidade)
+        return math.ceil(pessoas_na_frente * TEMPO_ATENDIMENTO_MIN / consultorios)
+
     def tempo_espera_estimado(self, especialidade: Especialidade) -> int | None:
         """RN05. Minutos estimados, ou None se não há consultório ativo ou o dia está encerrado."""
         if self._dia_encerrado or not self._cadastro.tem_especialista(especialidade):
             return None
         fila = self._filas.get(especialidade)
         tamanho_fila = fila.tamanho() if fila else 0
-        num_consultorios = self._cadastro.consultorios_ativos(especialidade)
-        tempo_estimado = math.ceil((tamanho_fila * TEMPO_ATENDIMENTO_MIN) / num_consultorios)
-        return tempo_estimado
+        return self._minutos_para(especialidade, tamanho_fila)
     
     def tempo_espera_senha(self, especialidade: Especialidade, numero: int) -> int | None:
-        """Minutos até a senha ser chamada: pacientes à frente × 30; None se não está aguardando."""
+        """Minutos estimados até a senha ser chamada (mesma conta da RN05); None se não está aguardando."""
         fila = self._filas.get(especialidade)
         if fila is None:
             return None
         a_frente = fila.posicao(numero)
         if a_frente is None:
             return None
-        return a_frente * TEMPO_ATENDIMENTO_MIN
+        return self._minutos_para(especialidade, a_frente)

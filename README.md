@@ -77,7 +77,7 @@ Os módulos são importados a partir da raiz do projeto, por exemplo `from clini
 - A clínica não realiza atendimentos de emergência.
 - A prioridade estrita foi escolhida pelo grupo, mas ainda depende de confirmação da professora.
 - A estimativa geral de espera considera o total de senhas aguardando, o tempo médio de atendimento de 30 minutos e a quantidade de consultórios ativos da especialidade.
-- A estimativa por senha considera a quantidade de pessoas à frente multiplicada por 30 minutos. Ela ainda não considera a quantidade de consultórios ativos e deve ser tratada como uma estimativa inicial a validar.
+- A estimativa por senha usa a mesma conta da estimativa geral: quantidade de pessoas à frente multiplicada por 30 minutos e dividida pelos consultórios ativos da especialidade, arredondada para cima. Por ser uma média, deve ser exibida como estimativa, sem garantia de tempo.
 - Alguns detalhes do encerramento diário também continuam como propostas a validar.
 
 ## Como executar
