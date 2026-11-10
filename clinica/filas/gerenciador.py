@@ -110,3 +110,13 @@ class GerenciadorFilas:
         num_consultorios = self._cadastro.consultorios_ativos(especialidade)
         tempo_estimado = math.ceil((tamanho_fila * TEMPO_ATENDIMENTO_MIN) / num_consultorios)
         return tempo_estimado
+    
+    def tempo_espera_senha(self, especialidade: Especialidade, numero: int) -> int | None:
+        """Minutos até a senha ser chamada: pacientes à frente × 30; None se não está aguardando."""
+        fila = self._filas.get(especialidade)
+        if fila is None:
+            return None
+        a_frente = fila.posicao(numero)
+        if a_frente is None:
+            return None
+        return a_frente * TEMPO_ATENDIMENTO_MIN
