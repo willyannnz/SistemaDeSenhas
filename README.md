@@ -147,20 +147,18 @@ As imagens abaixo mostram as principais telas da aplicação.
 
 Tela do paciente após escolher a especialidade e emitir uma senha.
 
-(COLE A IMAGEM DA TELA DE RETIRADA DE SENHA AQUI)
-
+![Tela de retirada de senha](docs/capturas/01-retirada-de-senha.png)
 **2. Painel de atendimento**
 
 Painel com a última chamada, categoria, consultório, quantidade aguardando, senhas em espera e estimativa de tempo.
 
-(COLE A IMAGEM DO PAINEL AQUI)
+![Painel de atendimento](docs/capturas/02-painel.png)
 
 **3. Chamada pelo especialista**
 
 Tela do especialista mostrando a chamada da próxima senha para o consultório.
 
-(COLE A IMAGEM DA CHAMADA DO ESPECIALISTA AQUI)
-
+![Chamada pelo especialista](docs/capturas/03-chamada-especialista.png)
 ### Dados de exemplo
 
 Para a apresentação, o banco começa vazio e cadastrar nove especialistas à mão toda vez seria demorado. Este comando já deixa tudo pronto (nove especialistas, três por especialidade, nos consultórios 1 a 9, e um administrador):
