@@ -139,6 +139,10 @@ Os testes automatizados rodam na raiz do projeto com `python -m unittest discove
 
 O exemplo cria especialistas nas três especialidades e permite percorrer as abas de retirada de senha, painel, especialista e administração. No painel, cada linha apresenta a última chamada, a categoria, o consultório, a quantidade de pessoas aguardando, a lista de senhas na ordem prevista e a espera estimada.
 
+### Vídeo de apresentação
+
+[Assista à apresentação do projeto no YouTube](https://youtu.be/K7gHaBfuoPQ)
+
 ### Capturas da interface
 
 As imagens abaixo mostram as principais telas da aplicação.
@@ -188,3 +192,4 @@ O usuário `admin` e a senha `admin123` servem **apenas para a demonstração**.
 | Bruna | Testes do cadastro de especialistas |
 | Levi | Consulta de relatórios de datas anteriores e exportação em CSV e Excel |
 | Iago | Segurança e estabilidade das operações com o SQLite: transações com rollback, modo WAL com tempo de espera, verificação de integridade e backup e restauração do banco, com testes |
+
